@@ -1,23 +1,18 @@
 {
   "compilerOptions": {
-    /* Language and Environment */
-    "target": "ESNext" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
-    /* Modules */
-    "module": "ESNext" /* Specify what module code is generated. */,
-    "baseUrl": "." /* Specify the base directory to resolve non-relative module names. */,
-    /* JavaScript Support */
-    "allowJs": true /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */,
-    // "noImplicitAny": false,
-    "declaration": false /* Generate .d.ts files from TypeScript and JavaScript files in your project. */ /* Specify an output folder for all emitted files. */,
-    "removeComments": true /* Disable emitting comments. */,
-    "importHelpers": true /* Allow importing helper functions from tslib once per project, instead of including them per-file. */,
-    "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
-    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
-    /* Type Checking */
-    "strict": true /* Enable all strict type-checking options. */,
-    "skipLibCheck": true /* Skip type checking all .d.ts files. */,
+    "target": "ESNext",
+    "module": "ESNext",
+    "baseUrl": ".",
+    "allowJs": true,
+    "noImplicitAny": true, // 在表达式和声明上有隐含的 any类型时报错
+    "declaration": false, // 生成相应的 '.d.ts' 文件
+    "removeComments": true,
+    "esModuleInterop": true, // 支持合成模块的默认导入
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
     "moduleResolution": "node",
-    "experimentalDecorators": true,
+    "experimentalDecorators": true, // 启用装饰器
+    "emitDecoratorMetadata": true, // 为装饰器提供元数据的支持
     "lib": ["dom", "DOM.Iterable", "esnext", "scripthost"],
     "types": ["webpack-env", "node"],
     "paths": {
