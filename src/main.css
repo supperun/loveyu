@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+}
+.all_bg {
+  width: 800px;
+  height: 600px;
+}
+#allcanvas {
+  position: relative;
+  width: 800px;
+  height: 600px;
+  margin: 0px;
+}
+#canvas1 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+#canvas2 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+}
