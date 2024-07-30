@@ -1,4 +1,4 @@
-import "./main.css";
+import "./global.css";
 import "../public/favicon.ico";
 import { momFruitsCollision, momBabyCollision } from "./youxi/collision";
 import { requestAnimFrame } from "./youxi/common/commonFunctions";
