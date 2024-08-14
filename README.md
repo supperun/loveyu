@@ -4,7 +4,7 @@
 
 ### **技术栈**
 
-<code>typescript</code> <code>webpack5</code> <code>H5</code> <code>CSS3</code><code>es6</code>
+<code>typescript</code> <code>webpack5</code> <code>H5</code> <code>CSS3</code>
 
 ```js
 npm install; // 安装依赖
