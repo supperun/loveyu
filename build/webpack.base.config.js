@@ -2,6 +2,7 @@ const path = require('path')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin')
 const ENV = process.env.NODE_ENV // 获取脚本路径上的参数
 
 module.exports = {
@@ -53,6 +54,21 @@ module.exports = {
           'css-loader',
         ],
       },
+    ],
+  },
+  optimization: {
+    minimizer: [
+      new ImageMinimizerPlugin({
+        minimizer: {
+          implementation: ImageMinimizerPlugin.imageminGenerate,
+          options: {
+            plugins: [
+              ['imagemin-mozjpeg', { quality: 75 }],
+              ['imagemin-pngquant', { quality: [0.65, 0.9] }],
+            ],
+          },
+        },
+      }),
     ],
   },
   plugins: [
