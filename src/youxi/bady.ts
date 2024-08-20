@@ -56,8 +56,8 @@ export class Bady implements draw {
   }
   public draw(deltaTime: number) {
     //lerp x y
-    this.x = lerpDistance(this.mom.x, this.x, 0.97)
-    this.y = lerpDistance(this.mom.y, this.y, 0.97)
+    this.x = lerpDistance(this.mom.x, this.x, 0.98)
+    this.y = lerpDistance(this.mom.y, this.y, 0.98)
 
     //lerp angle;
     let deltay = this.mom.y - this.y
@@ -91,7 +91,7 @@ export class Bady implements draw {
       if (this.babyBodyCount > 19) {
         this.babyBodyCount = 19
         // game over;
-        // this.gameData.gameOver = true
+        this.gameData.gameOver = true
       }
     }
 

@@ -2,7 +2,7 @@ import { Ane } from './ane'
 import { draw } from './common'
 
 export class Fruit implements draw {
-  num = 100
+  num = 30
   alive: boolean[] = [] //bool
   orange = new Image()
   blue = new Image()
@@ -96,7 +96,7 @@ export class Fruit implements draw {
     for (let i = 0; i < this.num; i++) {
       if (fruit.alive[i]) num++
     }
-    if (num < 100) {
+    if (num < 15) {
       //send fruit;
       this.sendFruit(fruit)
       return

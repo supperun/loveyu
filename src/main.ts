@@ -33,15 +33,8 @@ class Main {
   deltaTime: number = 0
 
   constructor() {
-    this.can1.width = window.innerWidth
-    this.can1.height = window.innerHeight
-
     let canWidth = this.can1.width
     let canHeight = this.can1.height
-
-    this.can2.width = window.innerWidth
-    this.can2.height = window.innerHeight
-
     this.gameData = new GameData(this.cxt1, canHeight, canWidth)
     this.ane = new Ane(this.cxt2, canHeight)
     this.fruit = new Fruit(this.cxt2, this.ane)
@@ -60,8 +53,6 @@ class Main {
     this.my = canHeight / 2
     this.bgPic = new Image()
     this.bgPic.src = './assets/background.jpg'
-    this.bgPic.width = window.innerWidth
-    this.bgPic.height = window.innerHeight
     this.bgPic.style.borderRadius = '20px'
     this.can1.addEventListener(
       'mousemove',
@@ -73,52 +64,7 @@ class Main {
     this.cxt1.fillStyle = 'white'
     this.cxt1.font = '30px Verdana'
     this.cxt1.textAlign = 'center' //center/left/right
-    this.drawStartBackground(this.cxt2, this.can2.height, this.can2.width)
-
-    window.addEventListener('resize', () => {
-      this.can1.width = window.innerWidth
-      this.can1.height = window.innerHeight
-      this.can2.width = window.innerWidth
-      this.can2.height = window.innerHeight
-      this.bgPic.width = window.innerWidth
-      this.bgPic.height = window.innerHeight
-      this.drawStartBackground(this.cxt2, this.can2.height, this.can2.width)
-      this.drawbackground(
-        this.cxt2,
-        this.bgPic,
-        this.can2.height,
-        this.can2.width
-      )
-      this.ane.draw(this.deltaTime)
-      this.fruit.fruitMonitor(this.fruit)
-      this.fruit.draw(this.deltaTime)
-      this.cxt1.clearRect(0, 0, this.can1.width, this.can1.height)
-
-      this.mom.draw(this.deltaTime, this.my, this.mx)
-      this.bady.draw(this.deltaTime)
-      this.gameData.draw(this.deltaTime)
-      this.wave.draw(this.deltaTime)
-      this.helo.draw(this.deltaTime)
-      this.dust.draw(this.deltaTime)
-      if (this.gameData.pause) {
-        this.cxt1.fillStyle = 'rgba(255,255,255,1)'
-        this.cxt1.fillText(
-          'Game Pause!',
-          this.can1.width / 2,
-          this.can1.height / 2
-        )
-      }
-      if (this.gameData.gameOver && !this.gameData.pause) {
-        // this.alpha += deltaTime * 0.0005
-        // if (this.alpha > 1) this.alpha = 1
-        this.cxt1.fillStyle = 'rgba(255,255,255,1)'
-        this.cxt1.fillText(
-          'Game Over!',
-          this.can1.width / 2,
-          this.can1.height / 2
-        )
-      }
-    })
+    this.drawStartBackground(this.cxt2, this.can1.height, this.can1.width)
   }
   game() {
     this.gameloop()
@@ -140,8 +86,8 @@ class Main {
     this.drawbackground(
       this.cxt2,
       this.bgPic,
-      this.can2.height,
-      this.can2.width
+      this.can1.height,
+      this.can1.width
     )
     this.ane.draw(this.deltaTime)
     this.fruit.fruitMonitor(this.fruit)
@@ -157,19 +103,16 @@ class Main {
     this.helo.draw(this.deltaTime)
     this.dust.draw(this.deltaTime)
     requestAnimFrame(() => {
-      if (this.gameData.pause) {
-        this.cxt1.save()
-        this.cxt1.fillStyle = 'rgba(255,255,255,1' + ')'
-        this.cxt1.fillText(
+      if (main.gameData.pause) {
+        main.cxt1.fillStyle = 'rgba(255,255,255,' + '1' + ')'
+        main.cxt1.fillText(
           'Game Pause!',
-          this.can1.width / 2,
-          this.can1.height / 2
+          main.can1.width / 2,
+          main.can1.height / 2
         )
-        this.cxt1.restore()
         return
       }
-      // !this.gameData.gameOver &&
-      this.gameloop()
+      !this.gameData.gameOver && this.gameloop()
     }) //setInterval, setTimeout
   }
   private drawbackground(
@@ -223,10 +166,8 @@ class Main {
     canWidth: number
   ) {
     let startBg = new Image()
-    startBg.src = './assets/cover.jpg'
-    startBg.width = window.innerWidth
-    startBg.height = window.innerWidth
-    // this.drawRadius(cxt2, startBg, canWidth, canHeight)
+    startBg.src = './assets/cover.png'
+    this.drawRadius(cxt2, startBg, canWidth, canHeight)
     cxt2.drawImage(startBg, 0, 0, canWidth, canHeight)
 
     let play = new Image()
@@ -275,7 +216,7 @@ main.can1.addEventListener('contextmenu', function (event) {
   if (main.gameData.gameOver) {
     main = new Main()
     main.cxt2.reset()
-    // main.drawRadius(main.cxt2, main.bgPic, main.can1.width, main.can1.height)
+    main.drawRadius(main.cxt2, main.bgPic, main.can1.width, main.can1.height)
     // 重玩保持游戏状态一直为开始中
     main.gameData.gameStart = true
     main.gameloop()

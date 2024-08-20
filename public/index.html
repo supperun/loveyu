@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <link rel="preload" as="image" href="./assets/cover.jpg" />
+    <link rel="preload" as="image" href="./assets/cover.png" />
     <link rel="preload" as="image" href="./assets/background.jpg" />
     <link rel="preload" as="image" href="./assets/play.png" />
     <link rel="icon" href="<%= htmlWebpackPlugin.options.url %>favicon.ico" />
@@ -18,12 +18,11 @@
         continue.</strong
       >
     </noscript>
-    <!-- <img src="./assets/cover.svg" /> -->
     <!-- built files will be auto injected -->
     <div class="all_bg">
       <div id="allcanvas">
-        <canvas id="canvas1"></canvas>
-        <canvas id="canvas2"></canvas>
+        <canvas id="canvas1" width="800" height="600"></canvas>
+        <canvas id="canvas2" width="800" height="600"></canvas>
       </div>
     </div>
     <dialog class="game-dialog">
@@ -36,7 +35,7 @@
         <section class="section-content">妈妈，我等你... (*^▽^*)</section>
       </article>
       <footer>
-        <p>喂食小鱼儿、左键双击暂停</p>
+        <p>左键双击暂停、右键重玩</p>
         <button type="button" class="button">知晓</button>
       </footer>
     </dialog>
