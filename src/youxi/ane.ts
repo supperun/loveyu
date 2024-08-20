@@ -1,7 +1,7 @@
 import { draw } from './common'
 
 export class Ane implements draw {
-  num = 50
+  num = 300
   rootx: number[] = []
   headx: any[] = []
   heady: any[] = []
