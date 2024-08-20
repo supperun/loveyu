@@ -189,15 +189,16 @@ if (gameDialog) {
   gameDialog.showModal()
 }
 
+gameBtn.addEventListener('click', () => {
+  gameDialog.close()
+})
+
+// 单击开始
 main.can1.addEventListener('click', () => {
   if (!main.gameData.gameStart) {
     main.gameloop()
     main.gameData.gameStart = true
   }
-})
-
-gameBtn.addEventListener('click', () => {
-  gameDialog.close()
 })
 
 // 左键双击暂停
@@ -216,6 +217,8 @@ main.can1.addEventListener('contextmenu', function (event) {
     main = new Main()
     main.cxt2.reset()
     main.drawRadius(main.cxt2, main.bgPic, main.can1.width, main.can1.height)
+    // 重玩保持游戏状态一直为开始中
+    main.gameData.gameStart = true
     main.gameloop()
   }
 })
