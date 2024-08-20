@@ -30,9 +30,9 @@ export class GameData implements draw {
       this.canHeight - 50
     )
     if (this.gameOver) {
-      this.alpha += deltaTime * 0.0005
-      if (this.alpha > 1) this.alpha = 1
-      this.cxt1.fillStyle = 'rgba(255,255,255,' + this.alpha + ')'
+      // this.alpha += deltaTime * 0.0005
+      // if (this.alpha > 1) this.alpha = 1
+      this.cxt1.fillStyle = 'rgba(255,255,255,' + '1' + ')'
       this.cxt1.fillText('Game Over!', this.canWidth / 2, this.canHeight / 2)
     }
     this.cxt1.restore()

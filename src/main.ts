@@ -111,7 +111,7 @@ class Main {
         )
         return
       }
-      this.gameloop()
+      !this.gameData.gameOver && this.gameloop()
     }) //setInterval, setTimeout
   }
   private drawbackground(
@@ -148,6 +148,8 @@ window.addEventListener('contextmenu', function (event) {
   event.preventDefault()
   if (main.gameData.gameOver) {
     main = new Main()
+    main.gameData.gameOver = false
     main.gameloop()
+    main.cxt1.restore()
   }
 })
