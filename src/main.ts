@@ -64,6 +64,7 @@ class Main {
     this.cxt1.fillStyle = 'white'
     this.cxt1.font = '30px Verdana'
     this.cxt1.textAlign = 'center' //center/left/right
+    this.drawStartBackground(this.cxt2, this.can1.height, this.can1.width)
   }
   game() {
     this.gameloop()
@@ -81,7 +82,7 @@ class Main {
     this.deltaTime = now - this.lastTime
     this.lastTime = now
     if (this.deltaTime > 40) this.deltaTime = 40
-    // if (this.deltaTime === 0) this.deltaTime = 40
+    if (this.deltaTime === 0) this.deltaTime = 40
     this.drawbackground(
       this.cxt2,
       this.bgPic,
@@ -102,12 +103,12 @@ class Main {
     this.helo.draw(this.deltaTime)
     this.dust.draw(this.deltaTime)
     requestAnimFrame(() => {
-      if (this.gameData.pause) {
-        this.cxt1.fillStyle = 'rgba(255,255,255,' + '1' + ')'
-        this.cxt1.fillText(
+      if (main.gameData.pause) {
+        main.cxt1.fillStyle = 'rgba(255,255,255,' + '1' + ')'
+        main.cxt1.fillText(
           'Game Pause!',
-          this.can1.width / 2,
-          this.can1.height / 2
+          main.can1.width / 2,
+          main.can1.height / 2
         )
         return
       }
@@ -122,34 +123,99 @@ class Main {
   ) {
     cxt2.drawImage(bgPic, 0, 0, canWidth, canHeight)
   }
+
+  // 背景图片画圆角
+  drawRadius(
+    cxt2: CanvasRenderingContext2D,
+    startBg: HTMLImageElement,
+    canWidth: number,
+    canHeight: number
+  ) {
+    const imgWidth = startBg.width
+    const imgHeight = startBg.height
+    const radius = 30
+
+    const x = (canWidth - imgWidth) / 2
+    const y = (canHeight - imgHeight) / 2
+
+    cxt2.restore()
+    cxt2.beginPath()
+    cxt2.moveTo(x + radius, y)
+    cxt2.lineTo(x + imgWidth - radius, y)
+    cxt2.arc(x + imgWidth - radius, y + radius, radius, -Math.PI / 2, 0)
+    cxt2.lineTo(x + imgWidth, y + imgHeight - radius)
+    cxt2.arc(
+      x + imgWidth - radius,
+      y + imgHeight - radius,
+      radius,
+      0,
+      Math.PI / 2
+    )
+    cxt2.lineTo(x + radius, y + imgHeight)
+    cxt2.arc(x + radius, y + imgHeight - radius, radius, Math.PI / 2, Math.PI)
+    cxt2.lineTo(x, y + radius)
+    cxt2.arc(x + radius, y + radius, radius, Math.PI, -Math.PI / 2)
+    cxt2.closePath()
+    cxt2.clip()
+    cxt2.save()
+  }
+
+  private drawStartBackground(
+    cxt2: CanvasRenderingContext2D,
+    canHeight: number,
+    canWidth: number
+  ) {
+    let startBg = new Image()
+    startBg.src = './assets/cover.png'
+    this.drawRadius(cxt2, startBg, canWidth, canHeight)
+    cxt2.drawImage(startBg, 0, 0, canWidth, canHeight)
+
+    let play = new Image()
+    play.src = './assets/play.png'
+    cxt2.drawImage(
+      play,
+      (canWidth - play.width) / 2,
+      (canHeight - play.height) / 2
+    )
+  }
 }
 
 const gameDialog = document.querySelector('.game-dialog') as HTMLDialogElement
 const gameBtn = document.querySelector('.button') as HTMLButtonElement
 
 let main = new Main()
+
 if (gameDialog) {
   gameDialog.showModal()
 }
+
+main.can1.addEventListener('click', () => {
+  if (!main.gameData.gameStart) {
+    main.gameloop()
+    main.gameData.gameStart = true
+  }
+})
+
 gameBtn.addEventListener('click', () => {
-  main.game()
   gameDialog.close()
 })
 
 // 左键双击暂停
-window.addEventListener('dblclick', function (event) {
+main.can1.addEventListener('dblclick', function (event) {
   if (main.gameData.gameOver) return
   main.gameData.pause = !main.gameData.pause
-  main.gameloop()
+  if (!main.gameData.pause) {
+    main.gameloop()
+  }
 })
 
 // 右键重玩
-window.addEventListener('contextmenu', function (event) {
+main.can1.addEventListener('contextmenu', function (event) {
   event.preventDefault()
   if (main.gameData.gameOver) {
     main = new Main()
-    main.gameData.gameOver = false
+    main.cxt2.reset()
+    main.drawRadius(main.cxt2, main.bgPic, main.can1.width, main.can1.height)
     main.gameloop()
-    main.cxt1.restore()
   }
 })
