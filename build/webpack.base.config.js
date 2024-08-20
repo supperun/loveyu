@@ -24,10 +24,6 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/i,
-        type: 'asset', // 使用 asset 模块处理图片
-      },
-      {
         test: /\.ts$/,
         use: 'ts-loader',
       },
@@ -64,8 +60,8 @@ module.exports = {
           implementation: ImageMinimizerPlugin.imageminGenerate,
           options: {
             plugins: [
-              ['imagemin-mozjpeg', { quality: 100 }],
-              ['imagemin-pngquant', { quality: 100 }],
+              ['imagemin-mozjpeg', { quality: 80 }],
+              ['imagemin-pngquant', { quality: [0.7, 0.9] }],
             ],
           },
         },
