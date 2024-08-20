@@ -76,11 +76,12 @@ class Main {
     }
   }
 
-  private gameloop() {
+  gameloop() {
     let now = Date.now()
     this.deltaTime = now - this.lastTime
     this.lastTime = now
     if (this.deltaTime > 40) this.deltaTime = 40
+    // if (this.deltaTime === 0) this.deltaTime = 40
     this.drawbackground(
       this.cxt2,
       this.bgPic,
@@ -100,7 +101,18 @@ class Main {
     this.wave.draw(this.deltaTime)
     this.helo.draw(this.deltaTime)
     this.dust.draw(this.deltaTime)
-    requestAnimFrame(() => this.gameloop()) //setInterval, setTimeout
+    requestAnimFrame(() => {
+      if (this.gameData.pause) {
+        this.cxt1.fillStyle = 'rgba(255,255,255,' + '1' + ')'
+        this.cxt1.fillText(
+          'Game Pause!',
+          this.can1.width / 2,
+          this.can1.height / 2
+        )
+        return
+      }
+      this.gameloop()
+    }) //setInterval, setTimeout
   }
   private drawbackground(
     cxt2: CanvasRenderingContext2D,
@@ -122,4 +134,20 @@ if (gameDialog) {
 gameBtn.addEventListener('click', () => {
   main.game()
   gameDialog.close()
+})
+
+// 左键双击暂停
+window.addEventListener('dblclick', function (event) {
+  if (main.gameData.gameOver) return
+  main.gameData.pause = !main.gameData.pause
+  main.gameloop()
+})
+
+// 右键重玩
+window.addEventListener('contextmenu', function (event) {
+  event.preventDefault()
+  if (main.gameData.gameOver) {
+    main = new Main()
+    main.gameloop()
+  }
 })

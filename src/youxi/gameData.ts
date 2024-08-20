@@ -5,6 +5,7 @@ export class GameData implements draw {
   double = 1
   score = 0
   gameStart = false
+  pause = false
   gameOver = false
   alpha = 0
   canHeight: number
