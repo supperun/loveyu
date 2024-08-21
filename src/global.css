@@ -5,6 +5,8 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  background: url('@assets/background.jpg') no-repeat;
+  background-size: cover;
 }
 .all_bg {
   width: 800px;

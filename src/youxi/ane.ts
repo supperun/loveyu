@@ -3,8 +3,8 @@ import { draw } from './common'
 export class Ane implements draw {
   num = 50
   rootx: number[] = []
-  headx: any[] = []
-  heady: any[] = []
+  headx: number[] = []
+  heady: number[] = []
   amp: number[] = []
   alpha = 0
   isExisted: boolean[] = []

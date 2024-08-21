@@ -63,7 +63,7 @@ export class Bady implements draw {
     let deltay = this.mom.y - this.y
     let deltax = this.mom.x - this.x
     let beta = Math.atan2(deltay, deltax) + Math.PI
-    this.angle = lerpAngle(beta, this.angle, 0.6)
+    this.angle = lerpAngle(beta, this.angle, 0.9)
     //baby tail count
     this.babyTailTimer += deltaTime
     if (this.babyTailTimer > 50) {

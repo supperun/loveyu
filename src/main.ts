@@ -125,7 +125,7 @@ class Main {
   }
 
   // 背景图片画圆角
-  drawRadius(
+  public drawRadius(
     cxt2: CanvasRenderingContext2D,
     startBg: HTMLImageElement,
     canWidth: number,
