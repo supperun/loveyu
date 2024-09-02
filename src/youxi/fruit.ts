@@ -1,5 +1,5 @@
 import { Ane } from './ane'
-import { draw } from './common'
+import { draw } from './utils'
 
 export class Fruit implements draw {
   num = 30

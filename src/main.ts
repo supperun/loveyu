@@ -1,7 +1,7 @@
 import './global.css'
 import '../public/favicon.ico'
 import { momFruitsCollision, momBabyCollision } from './youxi/collision'
-import { requestAnimFrame } from './youxi/common/commonFunctions'
+import { requestAnimFrame } from './youxi/utils'
 import { Ane } from './youxi/ane'
 import { Fruit } from './youxi/fruit'
 import { Mom } from './youxi/mom'

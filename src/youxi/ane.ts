@@ -1,4 +1,4 @@
-import { draw } from './common'
+import { draw } from './utils'
 
 export class Ane implements draw {
   num = 50

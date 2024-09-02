@@ -1,5 +1,4 @@
-import { draw } from './common'
-import { lerpDistance, lerpAngle } from './common/commonFunctions'
+import { draw, lerpDistance, lerpAngle } from './utils'
 import { GameData } from './gameData'
 import { Mom } from './mom'
 
