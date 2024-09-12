@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <link rel="preload" as="image" href="./assets/cover.png" />
     <link rel="preload" as="image" href="./assets/background.jpg" />
     <link rel="preload" as="image" href="./assets/play.png" />
     <link rel="icon" href="<%= htmlWebpackPlugin.options.url %>favicon.ico" />
@@ -19,11 +18,12 @@
       >
     </noscript>
     <!-- built files will be auto injected -->
-    <div class="all_bg">
-      <div id="allcanvas">
-        <canvas id="canvas1" width="800" height="600"></canvas>
-        <canvas id="canvas2" width="800" height="600"></canvas>
-      </div>
+    <canvas id="canvas1"></canvas>
+    <canvas id="canvas2"></canvas>
+    <div class="rotate-device">
+      <p>
+        Please rotate your device to landscape mode for the best experience.
+      </p>
     </div>
     <dialog class="game-dialog">
       <header>爱心鱼小游戏</header>

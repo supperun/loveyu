@@ -1,34 +1,19 @@
 body {
   margin: 0;
   padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 100vh;
   background: url('@assets/background.jpg') no-repeat;
   background-size: cover;
-}
-.all_bg {
-  width: 800px;
-  height: 600px;
-  border-radius: 20px;
-}
-#allcanvas {
   position: relative;
-  width: 800px;
-  height: 600px;
-  margin: 0px;
 }
 #canvas1 {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  inset: 0;
   z-index: 1;
 }
 #canvas2 {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  inset: 0;
   z-index: 0;
 }
 
@@ -123,4 +108,32 @@ button {
 button:hover {
   transform: translateY(-4px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+/* 在portrait（竖屏）模式下显示提示 */
+@media screen and (orientation: portrait) {
+  .rotate-device {
+    display: block;
+  }
+}
+
+/* 在landscape（横屏）模式下隐藏提示 */
+@media screen and (orientation: landscape) {
+  .rotate-device {
+    display: none;
+  }
+}
+
+.rotate-device {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 1000;
 }
